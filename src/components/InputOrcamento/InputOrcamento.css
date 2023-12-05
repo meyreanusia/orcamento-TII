@@ -1,0 +1,14 @@
+.inputOrcamento{
+    display: flex;
+    flex-direction: column;
+
+    row-gap: 5px;
+
+}
+
+.inputOrcamento h1{
+    font-size: 1.5rem;
+}
+.inputOrcamento input{
+    width: 50%;
+}
