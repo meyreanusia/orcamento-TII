@@ -2,7 +2,7 @@
 export default function Despesa(){
     return(
         <main>
-            <h1>ORçamento</h1>
+            <h1>Orçamento</h1>
         </main>
     )
 }

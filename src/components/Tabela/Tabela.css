@@ -6,11 +6,6 @@
 thead {
   background-color: black;
   color: white;
-
-  /* position: fixed;
-    top: 0;
-    width: 80%;
-    padding: 0; */
 }
 th,
 td {
@@ -34,12 +29,11 @@ td {
   transition: tranform ease 0.3s;
 }
 .btt-salvar:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 .input-edicao {
-
-    /* border: none; */
-    border-radius: 5px;
-    padding: 4px;
-    outline: none;
+  /* border: none; */
+  border-radius: 5px;
+  padding: 4px;
+  outline: none;
 }

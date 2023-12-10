@@ -1,67 +1,65 @@
-.acao{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: hidden;
-
-   
+.acao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
 }
-.acao div.container-tabela{
-    max-height: 400px;
-    width: 80%;
-    overflow-x: scroll;
+.acao div.container-tabela {
+  width: 80%;
 }
 
-
+.titulo-pagina {
+  text-align: center;
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 50px;
+}
 .container-tabela::-webkit-scrollbar {
-    width: 6px; 
-  }
-  
+  width: 6px;
+}
+
 .container-tabela::-webkit-scrollbar-thumb {
-    background-color: transparent; 
+  background-color: transparent;
 }
 
-.bttAdicionar{
-    width: 5%;
-    height: 35px;
-    background-color: seagreen;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    margin-top: 30px;
+.bttAdicionar {
+  width: 5%;
+  height: 35px;
+  background-color: seagreen;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 30px;
 
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.bttAdicionar:hover{
-    background-color: rgba(37, 113, 70, 0.985);
-    transform: scale(1.1);
+.bttAdicionar:hover {
+  background-color: rgba(37, 113, 70, 0.985);
+  transform: scale(1.1);
 }
 
 .container-tabela,
 .bttAdicionar {
-  display: block; /* Certifique-se de que os estilos padrão sejam aplicados */
+  display: block;
 }
 .popup-visivel .container-tabela,
 .popup-visivel .bttAdicionar {
-  display: none; /* Esconde a tabela e o botão quando o popup está visível */
+  display: none;
 }
 
 .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
-  }
-  .popup-visivel .overlay {
-    display: block;
-  }  
-
-  
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.popup-visivel .overlay {
+  display: block;
+}

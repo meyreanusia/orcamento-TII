@@ -7,7 +7,7 @@ export default function MenuLink({children, to}) {
   return (
     <>
       <NavLink
-        className={`${styles.link} ${localizacao.pathname === to ? styles.linkDestacado : ""}`}
+        className={`${styles.link} }`}
         to= {to}>
         {children}
       </NavLink>

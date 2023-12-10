@@ -29,20 +29,20 @@ export default function Acao() {
     handleSubmit(codigoNumber, nome)
       .then((resposta) => {
         if (resposta && resposta.ok) {
-          const dadoCriado = resposta.json();
-          return dadoCriado
+          return resposta.json();
         } else {
           console.error("Falha ao criar ação:", resposta);
           alert(
-            "Erro ao criare Ação! \n o código já existe na nossa base de dados."
+            "Erro ao criar Ação! \n o código já existe na nossa base de dados."
           );
           setShowPopup(false);
+          throw new Error("Erro ao criar a Ação");
         }
-      }).then((dadoCriado) => {
-        setDados([...dados, dadoCriado])
+      })
+      .then((dadoCriado) => {
         alert("Ação criada com sucesso");
-               setShowPopup(false);
-    })
+        setShowPopup(false);
+      })
       .catch((error) => {
         console.error("Erro ao criar ação:", error);
       });
@@ -51,6 +51,7 @@ export default function Acao() {
   return (
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
+        <h1 className="titulo-pagina">Ação</h1>
         <Tabela dados={dados} setDados={setDados} />
       </div>
       <button className="bttAdicionar" onClick={handleAdicionarClick}>
