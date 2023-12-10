@@ -1,6 +1,6 @@
 import './Button.css';
 
 function ButtonEnviar(){
-    return(<button className="btt">Enviar</button>)
+    return(<button className="btt">Cadastrar</button>)
 }
 export default ButtonEnviar; 

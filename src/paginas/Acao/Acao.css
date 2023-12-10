@@ -1,0 +1,67 @@
+.acao{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+
+   
+}
+.acao div.container-tabela{
+    max-height: 400px;
+    width: 80%;
+    overflow-x: scroll;
+}
+
+
+.container-tabela::-webkit-scrollbar {
+    width: 6px; 
+  }
+  
+.container-tabela::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+}
+
+.bttAdicionar{
+    width: 5%;
+    height: 35px;
+    background-color: seagreen;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+
+    transition: transform 0.3s ease;
+}
+
+.bttAdicionar:hover{
+    background-color: rgba(37, 113, 70, 0.985);
+    transform: scale(1.1);
+}
+
+.container-tabela,
+.bttAdicionar {
+  display: block; /* Certifique-se de que os estilos padrão sejam aplicados */
+}
+.popup-visivel .container-tabela,
+.popup-visivel .bttAdicionar {
+  display: none; /* Esconde a tabela e o botão quando o popup está visível */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
+  }
+  .popup-visivel .overlay {
+    display: block;
+  }  
+
+  

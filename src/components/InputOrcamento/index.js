@@ -12,6 +12,7 @@ function InputOrcamento({ onChange, titulo, exibirInput }) {
             id="codigo"
             onChange={onChange}
             placeholder="Digite o código..."
+            required={true}
           />
         </>
       )}
@@ -23,6 +24,8 @@ function InputOrcamento({ onChange, titulo, exibirInput }) {
         id="nome"
         onChange={onChange}
         placeholder="Digite o nome..."
+        required={true}
+
       />
     </div>
   );
