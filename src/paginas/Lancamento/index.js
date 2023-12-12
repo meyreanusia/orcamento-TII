@@ -2,17 +2,15 @@ import Tabela from "../../components/Tabela/index.js";
 import Formulario from "../../components/Formulario/index.js";
 import InputOrcamento from "../../components/InputOrcamento/index.js";
 import ButtonCadastrar from "../../components/ButtonCadastrar/index.js";
-import apiGrupoDespesa from "../../services/apiGrupoDespesa.js";
+import apiLancamento from "../../services/apiLancamento";
 import React, { useState, useEffect } from "react";
 import "../Acao/Acao.css";
 
-export default function GrupoDespesa() {
-  // const { handleSubmit, handleBuscar } = apiGrupoDespesa();
+export default function Lancamento() {
   const [showPopup, setShowPopup] = useState(false);
-  const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");
   const [dados, setDados] = useState([]);
-  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiGrupoDespesa();
+  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiLancamento();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,12 +24,11 @@ export default function GrupoDespesa() {
     fetchData();
   }, []);
 
-  function handleInputs(event) {
-    if (event.target.id === "codigo") {
-      setCodigo(event.target.value);
 
+  function handleInputs(event) {
+    if (event.target.id === "nome") {
+      setNome(event.target.value);
     }
-    setNome(event.target.value);
   }
   const handleAdicionarClick = () => {
     setShowPopup(true);
@@ -39,9 +36,9 @@ export default function GrupoDespesa() {
 
   async function cadastrar(event) {
     event.preventDefault();
-    const codigoNumber = parseInt(codigo);
+    // const codigoNumber = parseInt(codigo);
 
-    handleSubmit(codigoNumber, nome)
+    handleSubmit(nome)
       .then((resposta) => {
         if (resposta && resposta.ok) {
           return resposta.json();
@@ -68,8 +65,8 @@ export default function GrupoDespesa() {
   return (
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
-        <h1 className="titulo-pagina">Grupo despesa</h1>
-        <Tabela dados={dados} setDados={setDados} handleEditar = {handleEditar} handleExcluir ={handleExcluir} setCodigo ={setCodigo} setNome={setNome} codigo={true}/>
+        <h1 className="titulo-pagina">Lançamento</h1>
+        <Tabela codigo = {false} dados={dados} setDados={setDados} handleEditar = {handleEditar} handleExcluir ={handleExcluir} setNome={setNome}/>
       </div>
       <button className="bttAdicionar" onClick={handleAdicionarClick}>
         +

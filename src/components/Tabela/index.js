@@ -1,10 +1,16 @@
-
 import ButtonEditar from "../../components/ButtonEditar";
 import ButtonExcluir from "../../components/ButtonExcluir";
 import "./Tabela.css";
 
-function Tabela({dados, setDados, handleEditar, handleExcluir, setCodigo, setNome}) {
-
+function Tabela({
+  dados,
+  setDados,
+  handleEditar,
+  handleExcluir,
+  setCodigo,
+  setNome,
+  codigo,
+}) {
   function elementosInput(event, index) {
     const { id, value } = event.target;
     setDados((prevDados) =>
@@ -17,28 +23,44 @@ function Tabela({dados, setDados, handleEditar, handleExcluir, setCodigo, setNom
   function entrarModoEdicao(index) {
     setDados((prevDados) =>
       prevDados.map((item, i) =>
-        i === index ? { ...item, modoEdicao: true } : { ...item, modoEdicao: false }
+        i === index
+          ? { ...item, modoEdicao: true }
+          : { ...item, modoEdicao: false }
       )
     );
   }
 
   async function salvarEdicao(event, id, codigo, nome, index) {
+    console.log(id, codigo, nome, index);
     event.preventDefault();
-    const parseIntCodigo = parseInt(codigo);
 
+    if (codigo) {
+      const parseIntCodigo = parseInt(codigo);
+      try {
+        setCodigo(parseIntCodigo);
+        setNome(nome);
+        const resposta = await handleEditar(id, parseIntCodigo, nome);
+        if (resposta && resposta.ok) {
+          setDados((prevDados) =>
+            prevDados.map((item, i) =>
+              i === index ? { ...item, modoEdicao: false } : item
+            )
+          );
+        }
+      } catch (error) {
+        console.error("Erro ao salvar edição:", error);
+      }
+    }
     try {
-      setCodigo(parseIntCodigo);
       setNome(nome);
-      const resposta = await handleEditar(id, parseIntCodigo, nome);
+      const resposta = await handleEditar(id, nome);
       if (resposta && resposta.ok) {
         setDados((prevDados) =>
-        prevDados.map((item, i) =>
-          i === index ? { ...item, modoEdicao: false } : item
-        )
-      );
+          prevDados.map((item, i) =>
+            i === index ? { ...item, modoEdicao: false } : item
+          )
+        );
       }
-  
-
     } catch (error) {
       console.error("Erro ao salvar edição:", error);
     }
@@ -62,30 +84,66 @@ function Tabela({dados, setDados, handleEditar, handleExcluir, setCodigo, setNom
   return (
     <table className="tabela">
       <thead>
-        <tr>
-          <td>Código</td>
-          <td>Descrição</td>
-          <td>Alterar</td>
-          <td>Excluir</td>
-        </tr>
+        {codigo ? (
+          <tr>
+            <td>Codigo</td>
+            <td>Descrição</td>
+            <td>Alterar</td>
+            <td>Excluir</td>
+          </tr>
+        ) : (
+          <tr>
+            <td>Descrição</td>
+            <td>Alterar</td>
+            <td>Excluir</td>
+          </tr>
+        )}
+        
       </thead>
 
       <tbody>
-        {dados.map((item, index) => ( 
+        {dados.map((item, index) => (
           <tr key={index}>
-            <td>
-              {item.modoEdicao ?
-               (<input type="number" autoFocus className='input-edicao' id="codigo" value={item.codigo} onChange={(event) => elementosInput(event, index)}/>) 
-               : (item.codigo)}
+            {codigo && (
+              <td>
+              {item.modoEdicao ? (
+                <input
+                  type="number"
+                  autoFocus
+                  className='input-edicao'
+                  id="codigo"
+                  value={item.codigo}
+                  onChange={(event) => elementosInput(event, index)}
+                />
+              ) : (
+                item.codigo
+              )}
             </td>
+            )}
+            
             <td>
-              {item.modoEdicao ?
-              (<input type="text" id="nome" className='input-edicao' value={item.nome} onChange={(event) => elementosInput(event, index)}/>) 
-              : (item.nome)}
+              {item.modoEdicao ? (
+                <input
+                  type="text"
+                  id="nome"
+                  className="input-edicao"
+                  value={item.nome}
+                  onChange={(event) => elementosInput(event, index)}
+                />
+              ) : (
+                item.nome
+              )}
             </td>
             <td>
               {item.modoEdicao ? (
-                <button  className='btt-salvar' onClick={(event) => salvarEdicao(event, item.id,item.codigo, item.nome, index)}>Salvar</button>
+                <button
+                  className="btt-salvar"
+                  onClick={(event) =>
+                    salvarEdicao(event, item.id, item.codigo, item.nome, index)
+                  }
+                >
+                  Salvar
+                </button>
               ) : (
                 <ButtonEditar onClick={() => editar(index)} />
               )}
@@ -101,4 +159,3 @@ function Tabela({dados, setDados, handleEditar, handleExcluir, setCodigo, setNom
 }
 
 export default Tabela;
-

@@ -67,7 +67,7 @@ export default function Acao() {
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
         <h1 className="titulo-pagina">Ação</h1>
-        <Tabela dados={dados} setDados={setDados} handleEditar = {handleEditar} handleExcluir ={handleExcluir} setCodigo ={setCodigo} setNome={setNome}/>
+        <Tabela codigo={true} dados={dados} setDados={setDados} handleEditar = {handleEditar} handleExcluir ={handleExcluir} setCodigo ={setCodigo} setNome={setNome}/>
       </div>
       <button className="bttAdicionar" onClick={handleAdicionarClick}>
         +
