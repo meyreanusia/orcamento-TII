@@ -1,17 +1,18 @@
-import Tabela from "../../components/Tabela";
-import Formulario from "../../components/Formulario";
-import InputOrcamento from "../../components/InputOrcamento";
-import ButtonCadastrar from "../../components/ButtonCadastrar";
-import apiFonteRecurso from "../../services/apiFonteRecurso.js";
+import Tabela from "../../components/Tabela/index.js";
+import Formulario from "../../components/Formulario/index.js";
+import InputOrcamento from "../../components/InputOrcamento/index.js";
+import ButtonCadastrar from "../../components/ButtonCadastrar/index.js";
+import apiGrupoDespesa from "../../services/apiGrupoDespesa.js";
 import React, { useState, useEffect } from "react";
 import "../Acao/Acao.css";
 
-export default function FonteRecurso() {
+export default function GrupoDespesa() {
+  // const { handleSubmit, handleBuscar } = apiGrupoDespesa();
   const [showPopup, setShowPopup] = useState(false);
   const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");
   const [dados, setDados] = useState([]);
-  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiFonteRecurso();
+  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiGrupoDespesa();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,7 @@ export default function FonteRecurso() {
   function handleInputs(event) {
     if (event.target.id === "codigo") {
       setCodigo(event.target.value);
+
     }
     setNome(event.target.value);
   }
@@ -66,9 +68,8 @@ export default function FonteRecurso() {
   return (
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
-        <h1 className="titulo-pagina">Fonte recurso</h1>
+        <h1 className="titulo-pagina">Grupo despesa</h1>
         <Tabela dados={dados} setDados={setDados} handleEditar = {handleEditar} handleExcluir ={handleExcluir} setCodigo ={setCodigo} setNome={setNome}/>
-
       </div>
       <button className="bttAdicionar" onClick={handleAdicionarClick}>
         +

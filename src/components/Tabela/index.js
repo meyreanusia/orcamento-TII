@@ -1,23 +1,9 @@
-import { useEffect } from 'react';
+
 import ButtonEditar from "../../components/ButtonEditar";
 import ButtonExcluir from "../../components/ButtonExcluir";
-import useApiAcao from "../../services/apiAcao.js";
 import "./Tabela.css";
 
-function Tabela({dados, setDados}) {
-  const { handleBuscar, handleEditar, handleExcluir, setCodigo, setNome } = useApiAcao();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dadosDaApi = await handleBuscar();
-        setDados(dadosDaApi || []);
-      } catch (error) {
-        console.log("Erro ao buscar dados", error);
-      }
-    };
-    fetchData();
-  }, []);
+function Tabela({dados, setDados, handleEditar, handleExcluir, setCodigo, setNome}) {
 
   function elementosInput(event, index) {
     const { id, value } = event.target;

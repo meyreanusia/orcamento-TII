@@ -3,14 +3,28 @@ import Formulario from "../../components/Formulario";
 import InputOrcamento from "../../components/InputOrcamento";
 import ButtonCadastrar from "../../components/ButtonCadastrar";
 import useApiAcao from "../../services/apiAcao.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Acao.css";
+
 export default function Acao() {
-  const { handleSubmit, handleBuscar } = useApiAcao();
+  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = useApiAcao();
+
   const [showPopup, setShowPopup] = useState(false);
   const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");
   const [dados, setDados] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dadosDaApi = await handleBuscar();
+        setDados(dadosDaApi || []);
+      } catch (error) {
+        console.log("Erro ao buscar dados", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   function handleInputs(event) {
     if (event.target.id === "codigo") {
@@ -40,6 +54,7 @@ export default function Acao() {
         }
       })
       .then((dadoCriado) => {
+        setDados([...dados, dadoCriado]);
         alert("Ação criada com sucesso");
         setShowPopup(false);
       })
@@ -52,7 +67,7 @@ export default function Acao() {
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
         <h1 className="titulo-pagina">Ação</h1>
-        <Tabela dados={dados} setDados={setDados} />
+        <Tabela dados={dados} setDados={setDados} handleEditar = {handleEditar} handleExcluir ={handleExcluir} setCodigo ={setCodigo} setNome={setNome}/>
       </div>
       <button className="bttAdicionar" onClick={handleAdicionarClick}>
         +

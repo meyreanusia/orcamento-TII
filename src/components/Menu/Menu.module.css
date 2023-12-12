@@ -1,12 +1,15 @@
 .navegacao {
     height: 112px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     column-gap: 3rem;
+    margin: 0px 15px;
 }
 
-
+.logo{
+    max-width: 150px;
+}
 
 @media (max-width: 744px) {
     .navegacao {
