@@ -1,6 +1,6 @@
 # Orçamento
 
-Projeto ópicos especiais II:
+Projeto da matéria Tópicos Especiais II:
 Desenvolvimento front-end do projeto, com integração da API em Java.
 
 Alunos:
