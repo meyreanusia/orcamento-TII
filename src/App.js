@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
      <Menu/>
      <Routes>
-        <Route path= '/inicio' element={<Inicio/>}/>
+        <Route path= '/' element={<Inicio/>}/>
         <Route path= "/acao" element={<Acao/>}/>
         <Route path= "/fonteRecurso" element={<FonteRecurso/>}/>
         <Route path= "/grupoDespesa" element={<GrupoDespesa/>}/>

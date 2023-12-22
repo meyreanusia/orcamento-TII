@@ -7,7 +7,7 @@ export default function Menu() {
 
       <nav className={styles.navegacao}>
       <img src="marca-mp-se.png" className={styles.logo}></img>
-        <MenuLink to="/inicio">Início</MenuLink>
+        <MenuLink to="/">Início</MenuLink>
         <MenuLink to="/acao">Ação</MenuLink>
         <MenuLink to="/fonteRecurso">Fonte recurso</MenuLink>
         <MenuLink to="/grupoDespesa">Grupo despesa</MenuLink>
