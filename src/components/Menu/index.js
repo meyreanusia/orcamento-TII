@@ -16,6 +16,10 @@ export default function Menu() {
         <MenuLink to="/lancamento">Lançamento</MenuLink>
         <MenuLink to="/solicitante">Solicitante</MenuLink>
         <MenuLink to="/objetivoEstrategico">Objetivo estratégico</MenuLink>
+        <MenuLink to="/unidadeOrcamentaria">Unidade Orcamentaria</MenuLink>
+        <MenuLink to="/elementoDespesa">Elemento Despesa</MenuLink>
+        <MenuLink to="/programa">Programa</MenuLink>
+        <MenuLink to="/modalidadeAplicacao">Modalidade Aplicação</MenuLink>
       </nav>
     </header>
   );
