@@ -15,7 +15,7 @@ import UnidadeOrcamentaria from "./paginas/UnidadeOrcamentaria/index.js";
 import ElementoDespesa from "./paginas/ElementoDespesa/index.js";
 import Programa from "./paginas/Programa/index.js";
 import ModalidadeAplicacao from "./paginas/ModalidadeAplicacao/index.js";
-
+import Orcamento from "./paginas/Orcamento/index.js";
 function App() {
 
   const {
@@ -31,6 +31,7 @@ function App() {
      <Menu/>
      <Routes>
         <Route path= '/' element={<Inicio/>}/>
+        <Route path= "/orcamento" element={<Orcamento/>}/>
         <Route path= "/acao" element={<Acao/>}/>
         <Route path= "/fonteRecurso" element={<FonteRecurso/>}/>
         <Route path= "/grupoDespesa" element={<GrupoDespesa/>}/>

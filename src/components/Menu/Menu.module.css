@@ -1,14 +1,28 @@
-.navegacao {
-    height: 112px;
+header{
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
+    align-items: center;
+    height: 112px;
+    margin: 0px 15px;
+
+}
+.navegacao {
+    height: 50px;
+    display: flex;
+    justify-content: center;
     align-items: center;
     column-gap: 2rem;
-    margin: 0px 15px;
+    flex-wrap: wrap;
+    transition: trasform 5s;
+}
+.navegacao a:hover{
+    transform: scale(1.1);
+    color: #961813;
 }
 
 .logo{
     max-width: 150px;
+    max-height: 50px;
 }
 
 @media (max-width: 744px) {
