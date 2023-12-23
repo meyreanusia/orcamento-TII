@@ -2,12 +2,12 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 112px;
+    max-height: 112px;
     margin: 0px 15px;
 
 }
 .navegacao {
-    height: 50px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,6 +19,10 @@ header{
     transform: scale(1.1);
     color: #961813;
 }
+.navegacao a:active{
+    color: #961813;
+}
+
 
 .logo{
     max-width: 150px;

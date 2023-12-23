@@ -1,9 +1,7 @@
 .inputOrcamento{
     display: flex;
     flex-direction: column;
-
     row-gap: 5px;
-
 }
 
 .inputOrcamento h1{
@@ -11,4 +9,13 @@
 }
 .inputOrcamento input{
     width: 50%;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inputOrcamento input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+    outline: none; 
 }

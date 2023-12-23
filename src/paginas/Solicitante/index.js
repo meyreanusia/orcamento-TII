@@ -74,7 +74,7 @@ export default function Solicitante() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Solicitante"}
             exibirInput={true}
             onChange={handleInputs}
           />

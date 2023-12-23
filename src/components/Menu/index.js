@@ -10,12 +10,12 @@ export default function Menu() {
         <MenuLink to="/">Início</MenuLink>
         <MenuLink to="/orcamento">Orçamento</MenuLink>
         <MenuLink to="/acao">Ação</MenuLink>
-        <MenuLink to="/fonteRecurso">Fonte recurso</MenuLink>
-        <MenuLink to="/grupoDespesa">Grupo despesa</MenuLink>
+        <MenuLink to="/fonteRecurso">Fonte Recurso</MenuLink>
+        <MenuLink to="/grupoDespesa">Grupo Despesa</MenuLink>
         <MenuLink to="/unidade">Unidade</MenuLink>
         <MenuLink to="/transacao">Transação</MenuLink>
         <MenuLink to="/solicitante">Solicitante</MenuLink>
-        <MenuLink to="/objetivoEstrategico">Objetivo estratégico</MenuLink>
+        <MenuLink to="/objetivoEstrategico">Objetivo Estratégico</MenuLink>
         <MenuLink to="/unidadeOrcamentaria">Unidade Orcamentaria</MenuLink>
         <MenuLink to="/elementoDespesa">Elemento Despesa</MenuLink>
         <MenuLink to="/programa">Programa</MenuLink>

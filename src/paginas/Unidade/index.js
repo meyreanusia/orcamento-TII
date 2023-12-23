@@ -74,7 +74,7 @@ export default function Unidade() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Unidade"}
             exibirInput={true}
             onChange={handleInputs}
           />

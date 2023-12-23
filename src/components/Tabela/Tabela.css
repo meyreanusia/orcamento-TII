@@ -14,6 +14,9 @@ td {
   padding: 8px;
   text-align: left;
 }
+table > tbody > tr  td{
+  min-height: 40px;
+}
 
 #root > main > div > table > tbody > tr> td:nth-child(3) {
   display: flex;

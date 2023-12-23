@@ -74,7 +74,7 @@ export default function Transacao() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Transação"}
             exibirInput={true}
             onChange={handleInputs}
           />

@@ -77,7 +77,7 @@ export default function GrupoDespesa() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Grupo Despesa"}
             exibirInput={true}
             onChange={handleInputs}
           />

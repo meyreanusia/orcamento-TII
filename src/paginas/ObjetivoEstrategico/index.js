@@ -74,7 +74,7 @@ export default function ObjetivoEstrategico() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Objetivo Estratégico"}
             exibirInput={true}
             onChange={handleInputs}
           />

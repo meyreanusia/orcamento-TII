@@ -3,6 +3,7 @@ main.inicio {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .inicio h1 {
@@ -14,6 +15,6 @@ main.inicio {
   color: #666;
   font-size: 18px; 
   line-height: 1.5; 
-  margin: 15px;
+  margin: 20px 15px;
   text-align: justify;
 }

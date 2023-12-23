@@ -76,7 +76,7 @@ export default function FonteRecurso() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Fonte Recurso"}
             exibirInput={true}
             onChange={handleInputs}
           />
