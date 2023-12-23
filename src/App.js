@@ -44,7 +44,8 @@ function App() {
         <Route path= "/elementoDespesa" element={<ElementoDespesa/>}/>
         <Route path= "/programa" element={<Programa/>}/>
         <Route path= "/modalidadeAplicacao" element={<ModalidadeAplicacao/>}/>
-        <Route path="*" element={<div style={{display: 'flex', flexDirection: 'column', justifyContent: "center", alignItems: "center", height: "500px", gap: "30px"}}>Página não enontrada</div>}/>
+        <Route path="*" element={<div style={{display: 'flex', flexDirection: 'column', justifyContent: "center", alignItems: "center", height: "500px", gap: "30px"}}>
+          <h1>Esta página não está disponível</h1></div>}/>
 
     </Routes>
     </BrowserRouter>
