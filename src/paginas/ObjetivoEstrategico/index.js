@@ -3,27 +3,15 @@ import Formulario from "../../components/Formulario/index.js";
 import InputOrcamento from "../../components/InputOrcamento/index.js";
 import ButtonCadastrar from "../../components/ButtonCadastrar/index.js";
 import apiObjetivoEstrategico from "../../services/apiObetivoEstrategico.js";
+import useApi from "../../services/useApi.js";
 import React, { useState, useEffect } from "react";
 import "../Acao/Acao.css";
 
 export default function ObjetivoEstrategico() {
   const [showPopup, setShowPopup] = useState(false);
   const [nome, setNome] = useState("");
-  const [dados, setDados] = useState([]);
   const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiObjetivoEstrategico();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dadosDaApi = await handleBuscar();
-        setDados(dadosDaApi || []);
-      } catch (error) {
-        console.log("Erro ao buscar dados", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+  const { dados,setDados } = useApi({ handleBuscar });
 
   function handleInputs(event) {
     if (event.target.id === "nome") {

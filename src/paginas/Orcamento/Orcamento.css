@@ -1,4 +1,17 @@
 
+
+.formOrcamento{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 10px #888888;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+
 .containerForm{
     justify-self: center;
     display: flex;
@@ -8,44 +21,75 @@
     box-sizing: border-box;   
     margin-top: 30px;
 }
-.formOrcamento{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
-    border-radius: 1rem;
-    box-shadow: 5px 5px 10px #888888;
-    padding: 15px 20px;
-    box-sizing: border-box;
-}
 .containerForm h1{
     text-align: center;
     font-weight: 300;
     font-style: italic;
 }
-input{
-    width: 50%;
+#lancamentoValido{
+    width: 2%;
+    margin: 0;
+}
+
+#lancamentoValido:focus{
+    outline: none; 
+    box-shadow: none;
+    border-color: none;
+}
+
+input, textarea{
+    width: 100%;
     padding: 3px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 15px;
+    margin-right: 10px;
 }
 
-input:focus {
+input:focus, textarea:focus  {
     border-color: #3498db;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
     outline: none; 
 }
 
-input:hover {
+input:hover, textarea:hover{
     background-color: #f0f0f0;
 }
 
 label {
-    font-size: 16px;
+    font-size: 15px;
     color: #333;
-    margin-bottom: 5px;
+    margin: 10px 0px 5px;
 }
 
+select{
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-size: 0.8rem;
+}
 
+select:hover{
+    background-color: #f0f0f0;
+}
+
+.containerSelect{
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+
+    border-top: 1px solid #ccc;
+    margin: 50px 0px 30px;
+    padding-top: 25px;
+}
+.containerInputs{
+    display: flex;
+    flex-direction: column;
+
+
+}

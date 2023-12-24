@@ -2,28 +2,16 @@ import Tabela from "../../components/Tabela/index.js";
 import Formulario from "../../components/Formulario/index.js";
 import InputOrcamento from "../../components/InputOrcamento/index.js";
 import ButtonCadastrar from "../../components/ButtonCadastrar/index.js";
+import useApi from "../../services/useApi.js";
 import apiTransacao from "../../services/apiTransacao.js";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../Acao/Acao.css";
 
 export default function Transacao() {
   const [showPopup, setShowPopup] = useState(false);
   const [nome, setNome] = useState("");
-  const [dados, setDados] = useState([]);
   const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiTransacao();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dadosDaApi = await handleBuscar();
-        setDados(dadosDaApi || []);
-      } catch (error) {
-        console.log("Erro ao buscar dados", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+  const { dados,setDados } = useApi({ handleBuscar });
 
   function handleInputs(event) {
     if (event.target.id === "nome") {
@@ -36,7 +24,6 @@ export default function Transacao() {
 
   async function cadastrar(event) {
     event.preventDefault();
-    // const codigoNumber = parseInt(codigo);
 
     handleSubmit(nome)
       .then((resposta) => {

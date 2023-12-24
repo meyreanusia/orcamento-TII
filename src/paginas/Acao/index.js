@@ -3,28 +3,18 @@ import Formulario from "../../components/Formulario";
 import InputOrcamento from "../../components/InputOrcamento";
 import ButtonCadastrar from "../../components/ButtonCadastrar";
 import useApiAcao from "../../services/apiAcao.js";
-import React, { useState, useEffect } from "react";
+import useApi from "../../services/useApi.js";
+import React, { useState } from "react";
 import "./Acao.css";
 
 export default function Acao() {
+
   const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = useApiAcao();
+  const { dados,setDados } = useApi({ handleBuscar });
 
   const [showPopup, setShowPopup] = useState(false);
   const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");
-  const [dados, setDados] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dadosDaApi = await handleBuscar();
-        setDados(dadosDaApi || []);
-      } catch (error) {
-        console.log("Erro ao buscar dados", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   function handleInputs(event) {
     if (event.target.id === "codigo") {
@@ -63,6 +53,7 @@ export default function Acao() {
       });
   }
 
+
   return (
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
@@ -85,3 +76,4 @@ export default function Acao() {
     </main>
   );
 }
+

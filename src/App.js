@@ -18,12 +18,12 @@ import ModalidadeAplicacao from "./paginas/ModalidadeAplicacao/index.js";
 import Orcamento from "./paginas/Orcamento/index.js";
 function App() {
 
-  const {
-    handleSubmit,
-    handleEditar,
-    handleExcluir,
-    elementosInput,
-  } = useApiAcao();
+  // const {
+  //   handleSubmit,
+  //   handleEditar,
+  //   handleExcluir,
+  //   elementosInput,
+  // } = useApiAcao();
 
   return (
 

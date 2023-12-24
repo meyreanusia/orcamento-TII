@@ -3,27 +3,18 @@ import Formulario from "../../components/Formulario";
 import InputOrcamento from "../../components/InputOrcamento";
 import ButtonCadastrar from "../../components/ButtonCadastrar";
 import apiFonteRecurso from "../../services/apiFonteRecurso.js";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useApi from "../../services/useApi.js";
+
 import "../Acao/Acao.css";
 
 export default function FonteRecurso() {
   const [showPopup, setShowPopup] = useState(false);
   const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");
-  const [dados, setDados] = useState([]);
-  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiFonteRecurso();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dadosDaApi = await handleBuscar();
-        setDados(dadosDaApi || []);
-      } catch (error) {
-        console.log("Erro ao buscar dados", error);
-      }
-    };
-    fetchData();
-  }, []);
+  const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiFonteRecurso();
+  const { dados,setDados } = useApi({ handleBuscar });
 
   function handleInputs(event) {
     if (event.target.id === "codigo") {

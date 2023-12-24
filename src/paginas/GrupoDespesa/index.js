@@ -3,28 +3,18 @@ import Formulario from "../../components/Formulario/index.js";
 import InputOrcamento from "../../components/InputOrcamento/index.js";
 import ButtonCadastrar from "../../components/ButtonCadastrar/index.js";
 import apiGrupoDespesa from "../../services/apiGrupoDespesa.js";
-import React, { useState, useEffect } from "react";
+import useApi from "../../services/useApi.js";
+import React, { useState } from "react";
 import "../Acao/Acao.css";
 
 export default function GrupoDespesa() {
-  // const { handleSubmit, handleBuscar } = apiGrupoDespesa();
+
   const [showPopup, setShowPopup] = useState(false);
   const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");
-  const [dados, setDados] = useState([]);
   const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = apiGrupoDespesa();
+  const { dados,setDados } = useApi({ handleBuscar });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dadosDaApi = await handleBuscar();
-        setDados(dadosDaApi || []);
-      } catch (error) {
-        console.log("Erro ao buscar dados", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   function handleInputs(event) {
     if (event.target.id === "codigo") {
