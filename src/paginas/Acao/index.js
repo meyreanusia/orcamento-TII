@@ -11,7 +11,6 @@ export default function Acao() {
 
   const {  handleEditar, handleExcluir, handleBuscar, handleSubmit } = useApiAcao();
   const { dados,setDados } = useApi({ handleBuscar });
-
   const [showPopup, setShowPopup] = useState(false);
   const [codigo, setCodigo] = useState();
   const [nome, setNome] = useState("");

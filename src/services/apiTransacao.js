@@ -23,7 +23,6 @@ function useApiAcao(){
             response.statusText
           );
         }
-        console.log("Busca realizada com sucesso");
         const dados = await response.json();
         return dados;
       } catch (error) {

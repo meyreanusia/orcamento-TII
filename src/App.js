@@ -16,14 +16,8 @@ import ElementoDespesa from "./paginas/ElementoDespesa/index.js";
 import Programa from "./paginas/Programa/index.js";
 import ModalidadeAplicacao from "./paginas/ModalidadeAplicacao/index.js";
 import Orcamento from "./paginas/Orcamento/index.js";
+import NovoOrcamento from "./paginas/NovoOrcamento/index.js";
 function App() {
-
-  // const {
-  //   handleSubmit,
-  //   handleEditar,
-  //   handleExcluir,
-  //   elementosInput,
-  // } = useApiAcao();
 
   return (
 
@@ -31,7 +25,8 @@ function App() {
      <Menu/>
      <Routes>
         <Route path= '/' element={<Inicio/>}/>
-        <Route path= "/orcamento" element={<Orcamento/>}/>
+        <Route path="/orcamento" element={<Orcamento/>}/>
+        <Route path= "/novoOrcamento" element={<NovoOrcamento/>}/>
         <Route path= "/acao" element={<Acao/>}/>
         <Route path= "/fonteRecurso" element={<FonteRecurso/>}/>
         <Route path= "/grupoDespesa" element={<GrupoDespesa/>}/>

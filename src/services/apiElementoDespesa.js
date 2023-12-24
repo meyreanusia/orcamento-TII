@@ -24,7 +24,6 @@ function useApiElementoDespesa(){
             response.statusText
           );
         }
-        console.log("Busca realizada com sucesso");
         const dados = await response.json();
         return dados;
       } catch (error) {
@@ -49,7 +48,6 @@ function useApiElementoDespesa(){
               response.statusText
             );
           }
-          console.log("Dados enviados com sucesso");
           return response
         } catch (error) {
           console.log("Erro ao enviar os dados", error);

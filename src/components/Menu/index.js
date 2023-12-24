@@ -9,6 +9,7 @@ export default function Menu() {
       <nav className={styles.navegacao}>
         <MenuLink to="/">Início</MenuLink>
         <MenuLink to="/orcamento">Orçamento</MenuLink>
+        <MenuLink to="/novoOrcamento">Novo Orçamento</MenuLink>
         <MenuLink to="/acao">Ação</MenuLink>
         <MenuLink to="/fonteRecurso">Fonte Recurso</MenuLink>
         <MenuLink to="/grupoDespesa">Grupo Despesa</MenuLink>
