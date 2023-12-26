@@ -33,22 +33,22 @@ export default function Lancamento() {
         if (resposta && resposta.ok) {
           return resposta.json();
         } else {
-          console.error("Falha ao criar ação:", resposta);
+          console.error("Falha ao criar tipo lançamento:", resposta);
           alert(
-            "Erro ao criar Ação! \n o código já existe na nossa base de dados."
+            "Erro ao criar Tipo Lançamento! \n o código já existe na nossa base de dados."
           );
           setShowPopup(false);
-          throw new Error("Erro ao criar a Ação");
+          throw new Error("Erro ao criar o Tipo Lançamento");
         }
       })
       .then((dadoCriado) => {
-        alert("Ação criada com sucesso");
+        alert("Tipo Lançamento criado com sucesso");
         setDados([...dados, dadoCriado]);
         setShowPopup(false);
 
       })
       .catch((error) => {
-        console.error("Erro ao criar ação:", error);
+        console.error("Erro ao criar tipo lançamento:", error);
       });
   }
 
@@ -64,7 +64,7 @@ export default function Lancamento() {
       {showPopup && (
         <Formulario handleSubmit={cadastrar}>
           <InputOrcamento
-            titulo={"Cadastrar Ação"}
+            titulo={"Cadastrar Tipo Lançamento"}
             exibirInput={true}
             onChange={handleInputs}
           />
