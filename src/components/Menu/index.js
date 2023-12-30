@@ -20,6 +20,7 @@ export default function Menu() {
         <MenuLink to="/unidadeOrcamentaria">Unidade Orcamentaria</MenuLink>
         <MenuLink to="/elementoDespesa">Elemento Despesa</MenuLink>
         <MenuLink to="/programa">Programa</MenuLink>
+        <MenuLink to="/tipoLancamento">Tipo Lançamento</MenuLink>
         <MenuLink to="/modalidadeAplicacao">Modalidade Aplicação</MenuLink>
       </nav>
     </header>

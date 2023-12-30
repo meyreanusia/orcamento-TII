@@ -5,7 +5,7 @@ function useApiElementoDespesa(){
 
     const [codigo, setCodigo] = useState();
     const [nome, setNome] = useState(""); 
-    const URL = "http://localhost:8080/api/orcamento/elementoDespesa/";
+    const URL = "http://localhost:8080/api/orcamento/elementodespesa/";
 
   
     async function handleBuscar(){

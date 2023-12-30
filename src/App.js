@@ -38,6 +38,7 @@ function App() {
         <Route path= "/unidadeOrcamentaria" element={<UnidadeOrcamentaria/>}/>
         <Route path= "/elementoDespesa" element={<ElementoDespesa/>}/>
         <Route path= "/programa" element={<Programa/>}/>
+        <Route path= "/tipoLancamento" element={<Lancamento/>}/>
         <Route path= "/modalidadeAplicacao" element={<ModalidadeAplicacao/>}/>
         <Route path="*" element={<div style={{display: 'flex', flexDirection: 'column', justifyContent: "center", alignItems: "center", height: "500px", gap: "30px"}}>
           <h1>Esta página não está disponível</h1></div>}/>

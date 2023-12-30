@@ -4,7 +4,7 @@ import { useState } from 'react';
 function useApiAcao(){
 
     const [nome, setNome] = useState(""); 
-    const URL = "http://localhost:8080/api/orcamento/tipoTransacao/";
+    const URL = "http://localhost:8080/api/orcamento/tipotransacao/";
 
   
     async function handleBuscar(){
