@@ -3,7 +3,6 @@ import apiAcao from "../../services/apiAcao.js";
 import useApi from "../../services/useApi.js";
 import apiElementoDespesa from "../../services/apiElementoDespesa.js";
 import apiGrupoDespesa from "../../services/apiGrupoDespesa.js";
-import apiLancamento from "../../services/apiLancamento.js";
 import useApiModalidadeAplicacao from "../../services/apiModalidadeAplicacao.js";
 import apiObetivoEstrategico from "../../services/apiObetivoEstrategico.js";
 import apiPrograma from "../../services/apiPrograma.js";
@@ -14,16 +13,21 @@ import apiUnidadeOrcamentaria from "../../services/apiUnidadeOrcamentaria.js";
 import React, { useState } from "react";
 import "./Orcamento.css";
 import ButtonCadastrar from "../../components/ButtonCadastrar/index.js";
+import apiOrcamento from "../../services/apiOrcamento.js";
+import apiLancamento from '../../services/apiLancamento.js';
+
 function NovoOrcamento() {
+
   const { handleBuscar: buscarAcao } = apiAcao();
   const { handleBuscar: buscarFonteRecurso } = apiFonteRecurso();
   const { handleBuscar: buscarElementoDespesa } = apiElementoDespesa();
   const { handleBuscar: buscarGrupoDespesa } = apiGrupoDespesa();
-  const { handleBuscar: buscarLancamento } = apiLancamento();
+  const { handleBuscar: buscarOrcamento, handleSubmit } = apiOrcamento();
   const { handleBuscar: buscarModalidade } = useApiModalidadeAplicacao();
   const { handleBuscar: buscarObetivoEstrategico } = apiObetivoEstrategico();
   const { handleBuscar: buscarPrograma } = apiPrograma();
   const { handleBuscar: buscarSolicitante } = apiSolicitante();
+  const { handleBuscar: buscarLancamento } = apiLancamento();
   const { handleBuscar: buscarTransacao } = apiTransacao();
   const { handleBuscar: buscarUnidade } = apiUnidade();
   const { handleBuscar: buscarUnidadeOrcamentaria } = apiUnidadeOrcamentaria();
@@ -38,20 +42,21 @@ function NovoOrcamento() {
   const { dados: dadosGrupoDespesa } = useApi({
     handleBuscar: buscarGrupoDespesa,
   });
-  const { dados: dadosLancamento } = useApi({ handleBuscar: buscarLancamento });
+  const { dados: dadosOrcamento } = useApi({ handleBuscar: buscarOrcamento });
   const { dados: dadosModalidade } = useApi({ handleBuscar: buscarModalidade });
   const { dados: dadosObetivoEstrategico } = useApi({
     handleBuscar: buscarObetivoEstrategico,
   });
   const { dados: dadosPrograma } = useApi({ handleBuscar: buscarPrograma });
+  const { dados: dadosTransacao } = useApi({ handleBuscar: buscarTransacao });
+  const { dados: dadosLancamento } = useApi({
+    handleBuscar: buscarLancamento,
+  });
   const { dados: dadosSolicitante } = useApi({
     handleBuscar: buscarSolicitante,
   });
-  const { dados: dadosTransacao } = useApi({ handleBuscar: buscarTransacao });
   const { dados: dadosUnidade } = useApi({ handleBuscar: buscarUnidade });
-  const { dados: dadosUnidadeOrcamentaria } = useApi({
-    handleBuscar: buscarUnidadeOrcamentaria,
-  });
+  const { dados: dadosUnidadeOrcamentaria } = useApi({handleBuscar: buscarUnidadeOrcamentaria});
 
   const [valoresSelecionados, setValoresSelecionados] = useState({
     acao: "",
@@ -68,6 +73,7 @@ function NovoOrcamento() {
     unidadeOrcamentaria: "",
   });
 
+
   function handleChange(event) {
     const { name, value } = event.target;
     setValoresSelecionados((prevValores) => ({
@@ -78,6 +84,7 @@ function NovoOrcamento() {
 
   function cadastrarOrcamento(event) {
     event.preventDefault();
+
     const anoOrcamento = document.getElementById("anoOrcamento").value;
     const contratado = document.getElementById("contratado").value;
     const dataLancamento = document.getElementById("dataLancamento").value;
@@ -85,9 +92,22 @@ function NovoOrcamento() {
     const ged = document.getElementById("ged").value;
     const numeroLancamento = document.getElementById("numeroLancamento").value;
     const valor = document.getElementById("valor").value;
-    const lancamentoValido =
-      document.getElementById("lancamentoValido").checked;
-    console.log(valoresSelecionados);
+    const lancamentoValido =document.getElementById("lancamentoValido").checked;
+     
+    const orcamento = {
+    anoOrcamento,
+    contratado,
+    dataLancamento,
+    descricao,
+    ged,
+    numeroLancamento,
+    valor,
+    lancamentoValido,
+    ...valoresSelecionados
+    }
+    console.log(orcamento);
+    handleSubmit(orcamento)
+
   }
   return (
     <div className="containerForm">
@@ -96,13 +116,19 @@ function NovoOrcamento() {
         <div className="containerInputs">
           <section>
             <label htmlFor="anoOrcamento">Ano do orçamento*</label>
-            <input type="number" id="anoOrcamento" />
+            <input type="number" id="anoOrcamento" required />
             <label htmlFor="contratado">Contratado </label>
             <input type="text" id="contratado" />
             <label htmlFor="dataLancamento">Data Lançamento*</label>
-            <input type="date" id="dataLancamento" />
+            <input type="date" id="dataLancamento" required />
             <label htmlFor="descricao">Descricao*</label>
-            <textarea name="" id="descricao" cols="10" rows="5"></textarea>
+            <textarea
+              name=""
+              id="descricao"
+              cols="10"
+              rows="5"
+              required
+            ></textarea>
           </section>
 
           <section>
@@ -111,8 +137,8 @@ function NovoOrcamento() {
             <label htmlFor="numeroLancamento">Número lançamento</label>
             <input type="number" id="numeroLancamento" />
             <label htmlFor="valor">Valor*</label>
-            <input type="number" id="valor" />
-            <label htmlFor="lancamentoValido">Lançamento válido*</label>
+            <input type="number" id="valor" required />
+            <label htmlFor="lancamentoValido">Lançamento válido</label>
             <input type="checkbox" id="lancamentoValido" />
           </section>
         </div>
@@ -120,8 +146,13 @@ function NovoOrcamento() {
         <div className="containerSelect">
           <section>
             <label htmlFor="acao">Ação*</label>
-            <select name="acao" id="acao" onChange={handleChange}>
-              <option>---SELECT---</option>
+            <select
+              name="acao"
+              id="acao"
+              onChange={handleChange}
+              required={valoresSelecionados.acao === ""}
+            >
+              <option value={""}>---SELECT---</option>
               {dadosAcao.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -133,8 +164,9 @@ function NovoOrcamento() {
               name="elementoDespesa"
               id="elementoDespesa"
               onChange={handleChange}
+              required={valoresSelecionados.elementoDespesa === ""}
             >
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
               {dadosElementoDespesa.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -146,8 +178,10 @@ function NovoOrcamento() {
               name="fonteRecurso"
               id="fonteRecurso"
               onChange={handleChange}
+              required={valoresSelecionados.fonteRecurso === ""}
             >
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
+
               {dadosFonteRecurso.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -159,8 +193,9 @@ function NovoOrcamento() {
               name="grupoDespesa"
               id="grupoDespesa"
               onChange={handleChange}
+              required={valoresSelecionados.grupoDespesa === ""}
             >
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
               {dadosGrupoDespesa.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -169,7 +204,16 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="lancamento">Lançamento</label>
             <select name="lancamento" id="lancamento" onChange={handleChange}>
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
+              {dadosOrcamento.map((dado) => (
+                <option key={dado.id} value={dado.id}>
+                  {dado.descricao}
+                </option>
+              ))}
+            </select>
+            <label htmlFor="lancamento">Tipo Lancamento</label>
+            <select name="lancamento" id="lancamento" onChange={handleChange}>
+              <option value={""}>---SELECT---</option>
               {dadosLancamento.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -181,8 +225,10 @@ function NovoOrcamento() {
               name="modalidadeAplicacao"
               id="modalidadeAplicacao"
               onChange={handleChange}
+              required={valoresSelecionados.modalidadeAplicacao === ""}
             >
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
+
               {dadosModalidade.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -197,8 +243,9 @@ function NovoOrcamento() {
               name="obetivoEstrategico"
               id="obetivoEstrategico"
               onChange={handleChange}
+              required={valoresSelecionados.obetivoEstrategico === ""}
             >
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
               {dadosObetivoEstrategico.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -206,8 +253,13 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="programa">Programa*</label>
-            <select name="programa" id="programa" onChange={handleChange}>
-              <option>---SELECT---</option>
+            <select
+              name="programa"
+              id="programa"
+              onChange={handleChange}
+              required={valoresSelecionados.programa === ""}
+            >
+              <option value={""}>---SELECT---</option>
               {dadosPrograma.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -215,8 +267,13 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="solicitante">Solicitante*</label>
-            <select name="solicitante" id="solicitante" onChange={handleChange}>
-              <option>---SELECT---</option>
+            <select
+              name="solicitante"
+              id="solicitante"
+              onChange={handleChange}
+              required={valoresSelecionados.solicitante === ""}
+            >
+              <option value={""}>---SELECT---</option>
               {dadosSolicitante.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -224,8 +281,13 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="transacao">Transacao*</label>
-            <select name="transacao" id="transacao" onChange={handleChange}>
-              <option>---SELECT---</option>
+            <select
+              name="transacao"
+              id="transacao"
+              onChange={handleChange}
+              required={valoresSelecionados.transacao === ""}
+            >
+              <option value={""}>---SELECT---</option>
               {dadosTransacao.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -233,8 +295,13 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="unidade">Unidade*</label>
-            <select name="unidade" id="unidade" onChange={handleChange}>
-              <option>---SELECT---</option>
+            <select
+              name="unidade"
+              id="unidade"
+              onChange={handleChange}
+              required={valoresSelecionados.unidade === ""}
+            >
+              <option value={""}>---SELECT---</option>
               {dadosUnidade.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -246,8 +313,9 @@ function NovoOrcamento() {
               name="unidadeOrcamentaria"
               id="unidadeOrcamentaria"
               onChange={handleChange}
+              required={valoresSelecionados.unidadeOrcamentaria === ""}
             >
-              <option>---SELECT---</option>
+              <option value={""}>---SELECT---</option>
               {dadosUnidadeOrcamentaria.map((dado) => (
                 <option key={dado.id} value={dado.id}>
                   {dado.nome}
@@ -264,3 +332,4 @@ function NovoOrcamento() {
 }
 
 export default NovoOrcamento;
+ 

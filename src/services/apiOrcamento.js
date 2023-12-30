@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 
-function useApiAcao(){
+function useApiOrcamento(){
 
+    const [codigo, setCodigo] = useState();
     const [nome, setNome] = useState(""); 
-    const URL = "http://localhost:8080/api/orcamento/tipoLancamento/";
+    const URL = "http://localhost:8080/api/orcamento/lancamento/";
 
   
     async function handleBuscar(){
@@ -30,15 +31,15 @@ function useApiAcao(){
       }
     }
 
-    async function handleSubmit(nome) {
-      
+    async function handleSubmit(orcamento) {
+      console.log(orcamento);
         try {
           const response = await fetch(URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ nome }),
+            body: JSON.stringify({ orcamento }),
           });
     
           if (!response.ok) {
@@ -55,15 +56,15 @@ function useApiAcao(){
         }
     }
 
-    async function handleEditar(id, nome){
-      console.log(id, nome);
+    async function handleEditar(id, paramCodigo, paramNome){
+      
         try{
           const response = await fetch(`${URL}${id}`, {
             method: 'PUT',
             headers: { 
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({nome:nome})                          
+            body: JSON.stringify({codigo: paramCodigo, nome:paramNome})                          
           }) 
           if(!response.ok){
             console.log("Erro ao editar os dados", response.status, response.statusText);
@@ -79,14 +80,14 @@ function useApiAcao(){
           
     }
 
-    async function handleExcluir(id){
+    async function handleExcluir(codigo){
         try{
-          const response = await fetch(`${URL}/${id}`, {
+          const response = await fetch(`${URL}/${codigo}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({id})
+            body: JSON.stringify({codigo})
           })
       
           if(!response.ok){
@@ -98,7 +99,7 @@ function useApiAcao(){
         }
     }
 
-    return {handleSubmit, handleEditar, handleExcluir, setNome, handleBuscar}; 
+    return {handleSubmit, handleEditar, handleExcluir, setCodigo, setNome, handleBuscar}; 
 }
 
-export default useApiAcao; 
+export default useApiOrcamento; 
