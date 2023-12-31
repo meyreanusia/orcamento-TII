@@ -33,49 +33,39 @@ function NovoOrcamento() {
   const { handleBuscar: buscarUnidadeOrcamentaria } = apiUnidadeOrcamentaria();
 
   const { dados: dadosAcao } = useApi({ handleBuscar: buscarAcao });
-  const { dados: dadosFonteRecurso } = useApi({
-    handleBuscar: buscarFonteRecurso,
-  });
-  const { dados: dadosElementoDespesa } = useApi({
-    handleBuscar: buscarElementoDespesa,
-  });
-  const { dados: dadosGrupoDespesa } = useApi({
-    handleBuscar: buscarGrupoDespesa,
-  });
+  const { dados: dadosFonteRecurso } = useApi({ handleBuscar: buscarFonteRecurso,});
+  const { dados: dadosElementoDespesa } = useApi({handleBuscar: buscarElementoDespesa,});
+  const { dados: dadosGrupoDespesa } = useApi({handleBuscar: buscarGrupoDespesa,});
   const { dados: dadosOrcamento } = useApi({ handleBuscar: buscarOrcamento });
   const { dados: dadosModalidade } = useApi({ handleBuscar: buscarModalidade });
-  const { dados: dadosObetivoEstrategico } = useApi({
-    handleBuscar: buscarObetivoEstrategico,
-  });
+  const { dados: dadosObetivoEstrategico } = useApi({handleBuscar: buscarObetivoEstrategico,});
   const { dados: dadosPrograma } = useApi({ handleBuscar: buscarPrograma });
   const { dados: dadosTransacao } = useApi({ handleBuscar: buscarTransacao });
-  const { dados: dadosLancamento } = useApi({
-    handleBuscar: buscarLancamento,
-  });
-  const { dados: dadosSolicitante } = useApi({
-    handleBuscar: buscarSolicitante,
-  });
+  const { dados: dadosLancamento } = useApi({handleBuscar: buscarLancamento,});
+  const { dados: dadosSolicitante } = useApi({handleBuscar: buscarSolicitante,});
   const { dados: dadosUnidade } = useApi({ handleBuscar: buscarUnidade });
   const { dados: dadosUnidadeOrcamentaria } = useApi({handleBuscar: buscarUnidadeOrcamentaria});
 
   const [valoresSelecionados, setValoresSelecionados] = useState({
-    acao: "",
-    elementoDespesa: "",
-    fonteRecurso: "",
-    grupoDespesa: "",
-    lancamento: "",
-    modalidadeAplicacao: "",
-    obetivoEstrategico: "",
-    programa: "",
-    solicitante: "",
-    transacao: "",
-    unidade: "",
-    unidadeOrcamentaria: "",
+    idAcao: "",
+    idElementoDespesa: "",
+    idFonteRecurso: "",
+    idGrupoDespesa: "",
+    idLancamentoPai: "",
+    idModalidadeAplicacao: "",
+    idObjetivoEstrategico: "",
+    idPrograma: "",
+    idSolicitante: "",
+    idTipoTransacao: "",
+    idUnidade: "",
+    idUnidadeOrcamentaria: "",
+    idTipoLancamento: ""
   });
 
 
   function handleChange(event) {
     const { name, value } = event.target;
+    console.log(name, value);
     setValoresSelecionados((prevValores) => ({
       ...prevValores,
       [name]: value,
@@ -92,17 +82,17 @@ function NovoOrcamento() {
     const ged = document.getElementById("ged").value;
     const numeroLancamento = document.getElementById("numeroLancamento").value;
     const valor = document.getElementById("valor").value;
-    const lancamentoValido =document.getElementById("lancamentoValido").checked;
+    const lancamentoInvalido =document.getElementById("lancamentoValido").checked;
      
     const orcamento = {
-    anoOrcamento,
-    contratado,
-    dataLancamento,
-    descricao,
-    ged,
-    numeroLancamento,
-    valor,
-    lancamentoValido,
+      anoOrcamento,
+      contratado,
+      dataLancamento,
+      descricao,
+      ged,
+      numeroLancamento,
+      valor,
+      lancamentoInvalido,
     ...valoresSelecionados
     }
     console.log(orcamento);
@@ -122,13 +112,7 @@ function NovoOrcamento() {
             <label htmlFor="dataLancamento">Data Lançamento*</label>
             <input type="date" id="dataLancamento" required />
             <label htmlFor="descricao">Descricao*</label>
-            <textarea
-              name=""
-              id="descricao"
-              cols="10"
-              rows="5"
-              required
-            ></textarea>
+            <textarea name="" id="descricao" cols="10" rows="5" required></textarea>
           </section>
 
           <section>
@@ -164,7 +148,7 @@ function NovoOrcamento() {
               name="elementoDespesa"
               id="elementoDespesa"
               onChange={handleChange}
-              required={valoresSelecionados.elementoDespesa === ""}
+              required={valoresSelecionados.idElementoDespesa === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosElementoDespesa.map((dado) => (
@@ -174,13 +158,9 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="fonteRecurso">Fonte Recurso*</label>
-            <select
-              name="fonteRecurso"
-              id="fonteRecurso"
-              onChange={handleChange}
-              required={valoresSelecionados.fonteRecurso === ""}
-            >
-              <option value={""}>---SELECT---</option>
+            <select name="fonteRecurso" id="fonteRecurso" onChange={handleChange}
+             required={valoresSelecionados.idFonteRecurso === ""} >
+              <option valu >---SELECT---</option>
 
               {dadosFonteRecurso.map((dado) => (
                 <option key={dado.id} value={dado.id}>
@@ -193,7 +173,7 @@ function NovoOrcamento() {
               name="grupoDespesa"
               id="grupoDespesa"
               onChange={handleChange}
-              required={valoresSelecionados.grupoDespesa === ""}
+              required={valoresSelecionados.idGrupoDespesa === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosGrupoDespesa.map((dado) => (
@@ -225,7 +205,7 @@ function NovoOrcamento() {
               name="modalidadeAplicacao"
               id="modalidadeAplicacao"
               onChange={handleChange}
-              required={valoresSelecionados.modalidadeAplicacao === ""}
+              required={valoresSelecionados.idModalidadeAplicacao === ""}
             >
               <option value={""}>---SELECT---</option>
 
@@ -243,7 +223,7 @@ function NovoOrcamento() {
               name="obetivoEstrategico"
               id="obetivoEstrategico"
               onChange={handleChange}
-              required={valoresSelecionados.obetivoEstrategico === ""}
+              required={valoresSelecionados.idObjetivoEstrategico === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosObetivoEstrategico.map((dado) => (
@@ -257,7 +237,7 @@ function NovoOrcamento() {
               name="programa"
               id="programa"
               onChange={handleChange}
-              required={valoresSelecionados.programa === ""}
+              required={valoresSelecionados.idPrograma === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosPrograma.map((dado) => (
@@ -271,7 +251,7 @@ function NovoOrcamento() {
               name="solicitante"
               id="solicitante"
               onChange={handleChange}
-              required={valoresSelecionados.solicitante === ""}
+              required={valoresSelecionados.idSolicitante === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosSolicitante.map((dado) => (
@@ -299,7 +279,7 @@ function NovoOrcamento() {
               name="unidade"
               id="unidade"
               onChange={handleChange}
-              required={valoresSelecionados.unidade === ""}
+              required={valoresSelecionados.idUnidade === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosUnidade.map((dado) => (
@@ -313,7 +293,7 @@ function NovoOrcamento() {
               name="unidadeOrcamentaria"
               id="unidadeOrcamentaria"
               onChange={handleChange}
-              required={valoresSelecionados.unidadeOrcamentaria === ""}
+              required={valoresSelecionados.idUnidadeOrcamentaria === ""}
             >
               <option value={""}>---SELECT---</option>
               {dadosUnidadeOrcamentaria.map((dado) => (
