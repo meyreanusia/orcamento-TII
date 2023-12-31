@@ -95,7 +95,6 @@ function NovoOrcamento() {
       lancamentoInvalido,
     ...valoresSelecionados
     }
-    console.log(orcamento);
     handleSubmit(orcamento)
 
   }
@@ -131,7 +130,7 @@ function NovoOrcamento() {
           <section>
             <label htmlFor="acao">Ação*</label>
             <select
-              name="acao"
+              name="idAcao"
               id="acao"
               onChange={handleChange}
               required={valoresSelecionados.acao === ""}
@@ -145,7 +144,7 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="elementoDespesa">Elemento Despesa*</label>
             <select
-              name="elementoDespesa"
+              name="idElementoDespesa"
               id="elementoDespesa"
               onChange={handleChange}
               required={valoresSelecionados.idElementoDespesa === ""}
@@ -158,7 +157,7 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="fonteRecurso">Fonte Recurso*</label>
-            <select name="fonteRecurso" id="fonteRecurso" onChange={handleChange}
+            <select name="idFonteRecurso" id="fonteRecurso" onChange={handleChange}
              required={valoresSelecionados.idFonteRecurso === ""} >
               <option valu >---SELECT---</option>
 
@@ -170,7 +169,7 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="grupoDespesa">Grupo Despesa*</label>
             <select
-              name="grupoDespesa"
+              name="idGrupoDespesa"
               id="grupoDespesa"
               onChange={handleChange}
               required={valoresSelecionados.idGrupoDespesa === ""}
@@ -183,7 +182,7 @@ function NovoOrcamento() {
               ))}
             </select>
             <label htmlFor="lancamento">Lançamento</label>
-            <select name="lancamento" id="lancamento" onChange={handleChange}>
+            <select name="idLancamentoPai" id="lancamento" onChange={handleChange}>
               <option value={""}>---SELECT---</option>
               {dadosOrcamento.map((dado) => (
                 <option key={dado.id} value={dado.id}>
@@ -191,8 +190,8 @@ function NovoOrcamento() {
                 </option>
               ))}
             </select>
-            <label htmlFor="lancamento">Tipo Lancamento</label>
-            <select name="lancamento" id="lancamento" onChange={handleChange}>
+            <label htmlFor="idLancamentoPai">Tipo Lançamento</label>
+            <select name="idTipoLancamento" id="idLancamentoPai" onChange={handleChange}>
               <option value={""}>---SELECT---</option>
               {dadosLancamento.map((dado) => (
                 <option key={dado.id} value={dado.id}>
@@ -200,10 +199,10 @@ function NovoOrcamento() {
                 </option>
               ))}
             </select>
-            <label htmlFor="modalidadeAplicacao">Modalidade*</label>
+            <label htmlFor="idModalidadeAplicacao">Modalidade*</label>
             <select
-              name="modalidadeAplicacao"
-              id="modalidadeAplicacao"
+              name="idModalidadeAplicacao"
+              id="idModalidadeAplicacao"
               onChange={handleChange}
               required={valoresSelecionados.idModalidadeAplicacao === ""}
             >
@@ -220,7 +219,7 @@ function NovoOrcamento() {
           <section>
             <label htmlFor="obetivoEstrategico">Obetivo Estrategico*</label>
             <select
-              name="obetivoEstrategico"
+              name="idObjetivoEstrategico"
               id="obetivoEstrategico"
               onChange={handleChange}
               required={valoresSelecionados.idObjetivoEstrategico === ""}
@@ -234,7 +233,7 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="programa">Programa*</label>
             <select
-              name="programa"
+              name="idPrograma"
               id="programa"
               onChange={handleChange}
               required={valoresSelecionados.idPrograma === ""}
@@ -248,7 +247,7 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="solicitante">Solicitante*</label>
             <select
-              name="solicitante"
+              name="idSolicitante"
               id="solicitante"
               onChange={handleChange}
               required={valoresSelecionados.idSolicitante === ""}
@@ -260,10 +259,10 @@ function NovoOrcamento() {
                 </option>
               ))}
             </select>
-            <label htmlFor="transacao">Transacao*</label>
+            <label htmlFor="idTipoTransacao">Transacao*</label>
             <select
-              name="transacao"
-              id="transacao"
+              name="idTipoTransacao"
+              id="idTipoTransacao"
               onChange={handleChange}
               required={valoresSelecionados.transacao === ""}
             >
@@ -276,7 +275,7 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="unidade">Unidade*</label>
             <select
-              name="unidade"
+              name="idUnidade"
               id="unidade"
               onChange={handleChange}
               required={valoresSelecionados.idUnidade === ""}
@@ -290,7 +289,7 @@ function NovoOrcamento() {
             </select>
             <label htmlFor="unidadeOrcamentaria">Unidade Orcamentaria*</label>
             <select
-              name="unidadeOrcamentaria"
+              name="idUnidadeOrcamentaria"
               id="unidadeOrcamentaria"
               onChange={handleChange}
               required={valoresSelecionados.idUnidadeOrcamentaria === ""}

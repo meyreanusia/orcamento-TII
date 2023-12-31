@@ -26,7 +26,6 @@ export default function Lancamento() {
 
   async function cadastrar(event) {
     event.preventDefault();
-    // const codigoNumber = parseInt(codigo);
 
     handleSubmit(nome)
       .then((resposta) => {

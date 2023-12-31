@@ -32,9 +32,9 @@ function useApiOrcamento(){
     }
 
     async function handleSubmit(orcamento) {
-      console.log(orcamento);
+        console.log(orcamento);
         try {
-          const response = await fetch(URL, {
+            const response = await fetch(URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -43,13 +43,10 @@ function useApiOrcamento(){
           });
     
           if (!response.ok) {
-            console.log(
-              "Erro ao enviar os dados",
-              response.status,
-              response.statusText
-            );
+            console.log("Erro ao enviar os dados",response.status,response.statusText);
           }
-          console.log("Dados enviados com sucesso");
+          const responseData = await response.json();
+          console.log(responseData);
           return response
         } catch (error) {
           console.log("Erro ao enviar os dados", error);
