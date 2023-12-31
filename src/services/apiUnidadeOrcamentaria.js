@@ -5,7 +5,7 @@ function useApiUnidadeOrcamentaria(){
 
     const [codigo, setCodigo] = useState();
     const [nome, setNome] = useState(""); 
-    const URL = "http://localhost:8080/api/orcamento/unidadeorcamentaria/";
+    const URL = "http://localhost:8080/api/orcamento/unidadeOrcamentaria/";
 
   
     async function handleBuscar(){

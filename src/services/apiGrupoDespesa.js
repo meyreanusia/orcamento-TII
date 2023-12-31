@@ -5,7 +5,7 @@ function useApiAcao(){
 
     const [codigo, setCodigo] = useState();
     const [nome, setNome] = useState(""); 
-    const URL = "http://localhost:8080/api/orcamento/grupodespesa/";
+    const URL = "http://localhost:8080/api/orcamento/grupoDespesa/";
 
   
     async function handleBuscar(){
