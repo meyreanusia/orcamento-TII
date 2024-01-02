@@ -39,7 +39,7 @@ function useApiOrcamento(){
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ orcamento }),
+            body: JSON.stringify(orcamento),
           });
     
           if (!response.ok) {
@@ -47,6 +47,7 @@ function useApiOrcamento(){
           }
           const responseData = await response.json();
           console.log(responseData);
+          
           return response
         } catch (error) {
           console.log("Erro ao enviar os dados", error);

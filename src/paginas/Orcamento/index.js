@@ -7,10 +7,11 @@ export default function Orcamento() {
   const { dados, setDados } = useApi({ handleBuscar });
   return (
 
-    <Accordion>
-  {console.log(dados)}
+    <Accordion style={{margin: "100px 200px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent:"center"}}>
+        <h1 style={{marginBottom: "20px"}}>Orçamento</h1>
+
       {dados.map((dado, index) => (
-        <Accordion.Item eventKey={dado.id} key={dado.id}>
+        <Accordion.Item eventKey={dado.id} key={dado.id} style={{width: "100%"}} >
           <Accordion.Header>{dado.descricao}</Accordion.Header>
           <Accordion.Body>
             <p>{`Ano do orçamento : ${dado.anoOrcamento}`}</p>
