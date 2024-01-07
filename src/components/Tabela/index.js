@@ -34,36 +34,26 @@ function Tabela({
     console.log(id, codigo, nome, index);
     event.preventDefault();
 
-    if (codigo) {
-      const parseIntCodigo = parseInt(codigo);
-      try {
-        setCodigo(parseIntCodigo);
-        setNome(nome);
-        const resposta = await handleEditar(id, parseIntCodigo, nome);
-        if (resposta && resposta.ok) {
-          setDados((prevDados) =>
-            prevDados.map((item, i) =>
-              i === index ? { ...item, modoEdicao: false } : item
-            )
-          );
-        }
-      } catch (error) {
-        console.error("Erro ao salvar edição:", error);
-      }
+    // Verifique se 'codigo' é fornecido e se é uma string antes de converter
+  if (codigo !== undefined && typeof codigo === 'string') {
+    // Converta 'codigo' para um número
+    const parseIntCodigo = parseInt(codigo, 10);
+    setCodigo(parseIntCodigo);
+  }
+
+  try {
+    setNome(nome);
+    const resposta = await handleEditar(id, codigo, nome);
+    if (resposta && resposta.ok) {
+      setDados((prevDados) =>
+        prevDados.map((item, i) =>
+          i === index ? { ...item, modoEdicao: false } : item
+        )
+      );
     }
-    try {
-      setNome(nome);
-      const resposta = await handleEditar(id, nome);
-      if (resposta && resposta.ok) {
-        setDados((prevDados) =>
-          prevDados.map((item, i) =>
-            i === index ? { ...item, modoEdicao: false } : item
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Erro ao salvar edição:", error);
-    }
+  } catch (error) {
+    console.error("Erro ao salvar edição:", error);
+  }
 
   }
 
