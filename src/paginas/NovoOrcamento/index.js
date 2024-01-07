@@ -205,8 +205,13 @@ function NovoOrcamento() {
                 </option>
               ))}
             </select>
-            <label htmlFor="idLancamentoPai">Tipo Lançamento</label>
-            <select name="idTipoLancamento" id="idLancamentoPai" onChange={handleChange}>
+            <label htmlFor="idLancamentoPai">Tipo Lançamento*</label>
+            <select 
+              name="idTipoLancamento" 
+              id="idLancamentoPai" 
+              onChange={handleChange}
+              required={valoresSelecionados.idTipoLancamento === ""}
+            >
               <option value={""}>---SELECT---</option>
               {dadosLancamento.map((dado) => (
                 <option key={dado.id} value={dado.id}>
