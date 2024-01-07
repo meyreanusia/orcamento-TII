@@ -21,14 +21,14 @@ export default function Orcamento() {
             <p>{`Ged : ${dado.ged}`}</p>
             <p>{`Número lançamento : ${dado.numeroLancamento}`}</p>
             <p>{`Valor : ${dado.valor}`}</p>
-            <p>{`Lançamento válido : ${dado.lancamentoInvalido}`}</p>
-            <p>{`Ação : ${dado.acao}`}</p>
+            <p>{`Lançamento válido : ${dado.lancamentoValido}`}</p>
+            <p>{`Ação : ${dado.dsAcao}`}</p>
             <p>{`Elemento Despesa : ${dado.dsElementoDespesa}`}</p>
             <p>{`Fonte Recurso: ${dado.dsFonteRecurso}`}</p>
             <p>{`Grupo Despesa: ${dado.dsGrupoDespesa}`}</p>
             <p>{`Orçamento pai: ${dado.idLancamentoPai}`}</p>
-            <p>{`Unidade: ${dado.unidade}`}</p>
-            <p>{`Unidade Orcamentaria: ${dado.unidadeOrcamentaria}`}</p>
+            <p>{`Unidade: ${dado.dsUnidade}`}</p>
+            <p>{`Unidade Orcamentaria: ${dado.dsUnidadeOrcamentaria}`}</p>
           </Accordion.Body>
         </Accordion.Item>
       ))}
