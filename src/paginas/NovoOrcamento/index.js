@@ -72,7 +72,6 @@ function NovoOrcamento() {
     }));
   }
 
-  // Adicione um novo estado para controlar a exibição do alerta de sucesso
   const [mostrarAlerta, setMostrarAlerta] = useState(false);
 
   function cadastrarOrcamento(event) {
@@ -100,14 +99,11 @@ function NovoOrcamento() {
     }
     handleSubmit(orcamento)
     .then(() => {
-      // Exibe o alerta de sucesso
       alert("Orçamento criado com sucesso");
 
-      // Atualiza a página
       window.location.reload();
     })
     .catch((erro) => {
-      // Caso ocorra algum erro, você pode lidar com ele aqui
       console.error("Erro ao cadastrar o orçamento:", erro);
     });
 
@@ -174,7 +170,7 @@ function NovoOrcamento() {
             <label htmlFor="fonteRecurso">Fonte Recurso*</label>
             <select name="idFonteRecurso" id="fonteRecurso" onChange={handleChange}
              required={valoresSelecionados.idFonteRecurso === ""} >
-              <option valu >---SELECT---</option>
+              <option value >---SELECT---</option>
 
               {dadosFonteRecurso.map((dado) => (
                 <option key={dado.id} value={dado.id}>
