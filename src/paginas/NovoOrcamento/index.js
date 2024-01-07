@@ -72,6 +72,9 @@ function NovoOrcamento() {
     }));
   }
 
+  // Adicione um novo estado para controlar a exibição do alerta de sucesso
+  const [mostrarAlerta, setMostrarAlerta] = useState(false);
+
   function cadastrarOrcamento(event) {
     event.preventDefault();
 
@@ -96,6 +99,18 @@ function NovoOrcamento() {
     ...valoresSelecionados
     }
     handleSubmit(orcamento)
+    .then(() => {
+      // Exibe o alerta de sucesso
+      alert("Orçamento criado com sucesso");
+
+      // Atualiza a página
+      window.location.reload();
+    })
+    .catch((erro) => {
+      // Caso ocorra algum erro, você pode lidar com ele aqui
+      console.error("Erro ao cadastrar o orçamento:", erro);
+    });
+
 
   }
   return (
@@ -190,8 +205,13 @@ function NovoOrcamento() {
                 </option>
               ))}
             </select>
-            <label htmlFor="idLancamentoPai">Tipo Lançamento</label>
-            <select name="idTipoLancamento" id="idLancamentoPai" onChange={handleChange}>
+            <label htmlFor="idLancamentoPai">Tipo Lançamento*</label>
+            <select 
+              name="idTipoLancamento" 
+              id="idLancamentoPai" 
+              onChange={handleChange}
+              required={valoresSelecionados.idTipoLancamento === ""}
+            >
               <option value={""}>---SELECT---</option>
               {dadosLancamento.map((dado) => (
                 <option key={dado.id} value={dado.id}>
@@ -304,6 +324,8 @@ function NovoOrcamento() {
           </section>
         </div>
         <ButtonCadastrar />
+        
+        
       </form>
     </div>
   );
