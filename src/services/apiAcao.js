@@ -1,13 +1,10 @@
-import { useState } from 'react';
-
 
 function useApiAcao(){
 
-    const [codigo, setCodigo] = useState();
-    const [nome, setNome] = useState(""); 
     const URL = "http://localhost:8080/api/orcamento/acao/";
 
   
+    // GET
     async function handleBuscar(){
       try {
         const response = await fetch(URL, {
@@ -31,6 +28,7 @@ function useApiAcao(){
       }
     }
 
+    // POST
     async function handleSubmit(codigo, nome) {
         try {
           const response = await fetch(URL, {
@@ -55,8 +53,8 @@ function useApiAcao(){
         }
     }
 
+    // PUT
     async function handleEditar(id, paramCodigo, paramNome){
-      
         try{
           const response = await fetch(`${URL}${id}`, {
             method: 'PUT',
@@ -70,7 +68,6 @@ function useApiAcao(){
           }
           console.log("Dado editado com sucesso");
 
-          // const dados = await response.json();
 
           return response
         }catch (error) {
@@ -78,7 +75,7 @@ function useApiAcao(){
         }
           
     }
-
+    // DELETE
     async function handleExcluir(codigo){
         try{
           const response = await fetch(`${URL}/${codigo}`, {
@@ -98,7 +95,7 @@ function useApiAcao(){
         }
     }
 
-    return {handleSubmit, handleEditar, handleExcluir, setCodigo, setNome, handleBuscar}; 
+    return {handleSubmit, handleEditar, handleExcluir, handleBuscar}; 
 }
 
 export default useApiAcao; 

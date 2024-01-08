@@ -65,7 +65,6 @@ function NovoOrcamento() {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    console.log(name, value);
     setValoresSelecionados((prevValores) => ({
       ...prevValores,
       [name]: value,
@@ -97,15 +96,16 @@ function NovoOrcamento() {
       lancamentoInvalido,
     ...valoresSelecionados
     }
-    handleSubmit(orcamento)
-    .then(() => {
-      alert("Orçamento criado com sucesso");
 
-      window.location.reload();
-    })
-    .catch((erro) => {
-      console.error("Erro ao cadastrar o orçamento:", erro);
-    });
+    // handleSubmit(orcamento)
+    // .then(() => {
+    //   alert("Orçamento criado com sucesso");
+
+    //   window.location.reload();
+    // })
+    // .catch((erro) => {
+    //   console.error("Erro ao cadastrar o orçamento:", erro);
+    // });
 
 
   }

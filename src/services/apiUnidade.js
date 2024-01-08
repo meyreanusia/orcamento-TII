@@ -55,7 +55,7 @@ function useApiAcao(){
     }
 
     async function handleEditar(id, nome){
-      console.log(id, nome);
+      // console.log(id, nome);
         try{
           const response = await fetch(`${URL}${id}`, {
             method: 'PUT',
@@ -68,8 +68,6 @@ function useApiAcao(){
             console.log("Erro ao editar os dados", response.status, response.statusText);
           }
           console.log("Dado editado com sucesso");
-
-          // const dados = await response.json();
 
           return response
         }catch (error) {

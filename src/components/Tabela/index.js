@@ -31,31 +31,43 @@ function Tabela({
   }
 
   async function salvarEdicao(event, id, codigo, nome, index) {
-    console.log(id, codigo, nome, index);
     event.preventDefault();
 
-    // Verifique se 'codigo' é fornecido e se é uma string antes de converter
-  if (codigo !== undefined && typeof codigo === 'string') {
-    // Converta 'codigo' para um número
+  if (codigo !== undefined) {
     const parseIntCodigo = parseInt(codigo, 10);
     setCodigo(parseIntCodigo);
-  }
 
-  try {
-    setNome(nome);
-    const resposta = await handleEditar(id, codigo, nome);
-    if (resposta && resposta.ok) {
-      setDados((prevDados) =>
-        prevDados.map((item, i) =>
-          i === index ? { ...item, modoEdicao: false } : item
-        )
-      );
+      try {
+        setNome(nome);
+        const resposta = await handleEditar(id,codigo, nome);
+        if (resposta && resposta.ok) {
+          setDados((prevDados) =>
+            prevDados.map((item, i) =>
+              i === index ? { ...item, modoEdicao: false } : item
+            )
+          );
+        }
+      } catch (error) {
+        console.error("Erro ao salvar edição:", error);
+      }
+  }else{
+
+    try {
+      setNome(nome);
+      const resposta = await handleEditar(id, nome);
+      if (resposta && resposta.ok) {
+        setDados((prevDados) =>
+          prevDados.map((item, i) =>
+            i === index ? { ...item, modoEdicao: false } : item
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Erro ao salvar edição:", error);
     }
-  } catch (error) {
-    console.error("Erro ao salvar edição:", error);
   }
 
-  }
+}
 
   function editar(index) {
     entrarModoEdicao(index);
@@ -64,7 +76,7 @@ function Tabela({
   async function excluir(id) {
     try {
       const resposta = await handleExcluir(id);
-      // Remover o item da lista de dados após a exclusão
+
       setDados((prevDados) => prevDados.filter((item) => item.id !== id));
     } catch (error) {
       console.log("Erro ao excluir:", error);
