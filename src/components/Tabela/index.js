@@ -11,8 +11,12 @@ function Tabela({
   setNome,
   codigo,
 }) {
+
+  // atualiza o estado, com as mudanças dos inputs
+
   function elementosInput(event, index) {
     const { id, value } = event.target;
+
     setDados((prevDados) =>
       prevDados.map((item, i) =>
         i === index ? { ...item, [id]: value } : item
@@ -33,13 +37,31 @@ function Tabela({
   async function salvarEdicao(event, id, codigo, nome, index) {
     event.preventDefault();
 
-  if (codigo !== undefined) {
-    const parseIntCodigo = parseInt(codigo, 10);
-    setCodigo(parseIntCodigo);
+    if (codigo !== undefined) {
+      const parseIntCodigo = parseInt(codigo, 10);
+      // atualiza o estado
+      setCodigo(parseIntCodigo);
+
+      // atualiza o estado
+
+        try {
+          setNome(nome);
+          const resposta = await handleEditar(id,codigo, nome);
+          if (resposta && resposta.ok) {
+            setDados((prevDados) =>
+              prevDados.map((item, i) =>
+                i === index ? { ...item, modoEdicao: false } : item
+              )
+            );
+          }
+        } catch (error) {
+          console.error("Erro ao salvar edição:", error);
+        }
+    }else{
 
       try {
         setNome(nome);
-        const resposta = await handleEditar(id,codigo, nome);
+        const resposta = await handleEditar(id, nome);
         if (resposta && resposta.ok) {
           setDados((prevDados) =>
             prevDados.map((item, i) =>
@@ -50,22 +72,7 @@ function Tabela({
       } catch (error) {
         console.error("Erro ao salvar edição:", error);
       }
-  }else{
-
-    try {
-      setNome(nome);
-      const resposta = await handleEditar(id, nome);
-      if (resposta && resposta.ok) {
-        setDados((prevDados) =>
-          prevDados.map((item, i) =>
-            i === index ? { ...item, modoEdicao: false } : item
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Erro ao salvar edição:", error);
     }
-  }
 
 }
 
@@ -76,8 +83,8 @@ function Tabela({
   async function excluir(id) {
     try {
       const resposta = await handleExcluir(id);
-
       setDados((prevDados) => prevDados.filter((item) => item.id !== id));
+
     } catch (error) {
       console.log("Erro ao excluir:", error);
     }
