@@ -78,7 +78,7 @@ function useApiAcao(){
 
     async function handleExcluir(id){
         try{
-          const response = await fetch(`${URL}/${id}`, {
+          const response = await fetch(`${URL}${id}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json"

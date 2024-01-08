@@ -54,6 +54,7 @@ export default function Acao() {
 
 
   return (
+
     <main className={`acao ${showPopup ? "popup-visivel" : ""}`}>
       <div className="container-tabela">
         <h1 className="titulo-pagina">Ação</h1>

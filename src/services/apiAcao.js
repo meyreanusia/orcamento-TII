@@ -1,8 +1,6 @@
 
 function useApiAcao(){
-
     const URL = "http://localhost:8080/api/orcamento/acao/";
-
   
     // GET
     async function handleBuscar(){
@@ -78,7 +76,7 @@ function useApiAcao(){
     // DELETE
     async function handleExcluir(codigo){
         try{
-          const response = await fetch(`${URL}/${codigo}`, {
+          const response = await fetch(`${URL}${codigo}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json"

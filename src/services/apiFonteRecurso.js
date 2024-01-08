@@ -81,7 +81,7 @@ function useApiAcao(){
 
     async function handleExcluir(codigo){
         try{
-          const response = await fetch(`${URL}/${codigo}`, {
+          const response = await fetch(`${URL}${codigo}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json"
@@ -90,6 +90,7 @@ function useApiAcao(){
           })
       
           if(!response.ok){
+            console.log("entrei");
             console.log("Erro ao excluir os dados", response.status, response.statusText);
           }
           return response; 

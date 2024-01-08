@@ -81,7 +81,7 @@ function useApiModalidadeAplicacao(){
 
     async function handleExcluir(codigo){
         try{
-          const response = await fetch(`${URL}/${codigo}`, {
+          const response = await fetch(`${URL}${codigo}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json"
