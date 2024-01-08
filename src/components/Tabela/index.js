@@ -82,10 +82,12 @@ function Tabela({
 
   async function excluir(id) {
     try {
-      const resposta = await handleExcluir(id);
-      setDados((prevDados) => prevDados.filter((item) => item.id !== id));
+      const resposta = await handleExcluir(id)
+      if (resposta.ok) {
+        setDados((prevDados) => prevDados.filter((item) => item.id !== id));
+      }
 
-    } catch (error) {
+    }catch (error) {
       console.log("Erro ao excluir:", error);
     }
   }
