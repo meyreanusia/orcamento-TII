@@ -97,15 +97,15 @@ function NovoOrcamento() {
     ...valoresSelecionados
     }
 
-    // handleSubmit(orcamento)
-    // .then(() => {
-    //   alert("Orçamento criado com sucesso");
+     handleSubmit(orcamento)
+     .then(() => {
+       alert("Orçamento criado com sucesso");
 
-    //   window.location.reload();
-    // })
-    // .catch((erro) => {
-    //   console.error("Erro ao cadastrar o orçamento:", erro);
-    // });
+       window.location.reload();
+     })
+     .catch((erro) => {
+       console.error("Erro ao cadastrar o orçamento:", erro);
+     });
 
 
   }
